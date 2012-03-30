@@ -1,6 +1,12 @@
 GOAL
 This project is mostly for adapting solutions out there for my personal use.
 
+WHAT'S NEXT
+-Support baseurl for static baseurl
+-Tests
+-Comments/docs in the code
+
+
 EXAMPLE
 --------------------------
 /* require necessary */
