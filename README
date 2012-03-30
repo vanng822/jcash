@@ -2,12 +2,16 @@ GOAL
 This project is mostly for adapting solutions out there for my personal use.
 
 EXAMPLE
-
+--------------------------
 /* require necessary */
+var express = require('express');
+var staticHandler = require('jcash');
 
 /**
  * 
  * configuration rules
+ * location referred to the path in the url
+ *
   {
  		files: {
  			block1 : [filename1, filename2, ...],
@@ -18,18 +22,27 @@ EXAMPLE
  			...
  		},
  		locationMap : {
- 			location1 : [block1, block2,...]
+ 			path1 : [block1, block2,...],
+ 			path2 : [block1,block3,...],
+ 			...
  		}
   }
  */
 
+/* real configuration at http://igeonote.com */
 var config = {
 	js : {
 		files : {
-			'igeonote' : ['vnf/namespace.js', 'vnf/language.js',
-						'vnf/util/gplusone.js', 'vnf/util/fbshare.js', 
-						'vnf/util/geolocation.js', 'vnf/util/loading.js', 
-						'vnf/util/gatracking.js', 'jquery/jhistory.js', 'igeonote.js']
+			'igeonote' : [
+				'vnf/namespace.js',
+				'vnf/language.js',
+				'vnf/util/gplusone.js',
+				'vnf/util/fbshare.js', 
+				'vnf/util/geolocation.js',
+				'vnf/util/loading.js', 
+				'vnf/util/gatracking.js',
+				'jquery/jhistory.js',
+				'igeonote.js']
 		},
 		urls : {
 			'jQuery' : ['http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'],
@@ -64,10 +77,14 @@ var cssManager = staticHandler.getCssManager();
 jsManager.parseConfig(staticConfig.js);
 cssManager.parseConfig(staticConfig.css);
 
+/* for serving the contents */
 staticHandler.boostrap(app);
 
+/* generate the cache */
 jsManager.preRenderAll();
 cssManager.preRenderAll();
+
+--------------------------
 
 /* ejs templates; content template */
 <% addBottomScript('some javascript including script-tag here') %>
@@ -78,6 +95,7 @@ cssManager.preRenderAll();
 	<%- renderStyleTags() %>
 	</head>
 	<body>
+	<%- body %>
 	<%- renderScriptTags() %>
 	<%- renderBottomScripts() %>
 	</body>
