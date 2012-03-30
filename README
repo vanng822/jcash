@@ -1,3 +1,8 @@
+GOAL
+This project is mostly for adapting solutions out there for my personal use.
+
+EXAMPLE
+
 /* require necessary */
 
 /**
@@ -21,7 +26,10 @@
 var config = {
 	js : {
 		files : {
-			'igeonote' : ['vnf/namespace.js', 'vnf/loader.js', 'vnf/language.js', 'vnf/util/gplusone.js', 'vnf/util/fbshare.js', 'vnf/util/geolocation.js', 'vnf/util/loading.js', 'vnf/util/gatracking.js', 'jquery/jhistory.js', 'igeonote.js']
+			'igeonote' : ['vnf/namespace.js', 'vnf/language.js',
+						'vnf/util/gplusone.js', 'vnf/util/fbshare.js', 
+						'vnf/util/geolocation.js', 'vnf/util/loading.js', 
+						'vnf/util/gatracking.js', 'jquery/jhistory.js', 'igeonote.js']
 		},
 		urls : {
 			'jQuery' : ['http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'],
@@ -60,4 +68,18 @@ staticHandler.boostrap(app);
 
 jsManager.preRenderAll();
 cssManager.preRenderAll();
+
+/* ejs templates; content template */
+<% addBottomScript('some javascript including script-tag here') %>
+
+/* layout template with automatic location mapping */
+<html>
+	<head>
+	<%- renderStyleTags() %>
+	</head>
+	<body>
+	<%- renderScriptTags() %>
+	<%- renderBottomScripts() %>
+	</body>
+</html>
 	
