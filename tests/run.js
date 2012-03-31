@@ -74,9 +74,9 @@ function test() {
 	}
 	
 	console.log('Start running the tests ...');
-	assert.equal(jsManager.getUrls('3rthwrapper')[0],'/javascript/dist/f8b0aedcbba67c37d8d44d427dccae2c.js');
+	assert.equal(jsManager.getUrls('3rthwrapper')[0],'/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js');
 	assert.equal(jsManager.getUrls('jhistory')[0],'/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js');
-	assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="/javascript/dist/f8b0aedcbba67c37d8d44d427dccae2c.js" type="text/javascript"></script>');
+	assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js" type="text/javascript"></script>');
 	assert.equal(jsManager.renderTags('jhistory'), '<script src="/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js" type="text/javascript"></script>');
 	
 	assert.deepEqual(jsManager.getLocationMap('/'), ['jQuery', 'jshistory', '3rthwrapper', 'googleMap']);

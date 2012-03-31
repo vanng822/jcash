@@ -6,14 +6,14 @@ VNF.util.Loading = {
     loadingElementId: "loadingElementId",
     getLoadingElement: function(){
         if (!this.loadingElement) {
-            var test = $("#" + this.loadingElementId);
-            if (test.length < 1) {
+            this.loadingElement = document.getElementById(this.loadingElementId);
+            if (!this.loadingElement) {
                 this.loadingElement = document.createElement('div');
                 this.loadingElement.className = "loading hidden";
                 this.loadingElement.id = this.loadingElementId;
                 this.loadingElement.innerHTML = '<img src="/img/icons/loading.gif" alt="loading" />';
+            	$(document.body).append(this.loadingElement);
             }
-            $(document.body).append(this.loadingElement);
         }
         return this.loadingElement;
     },
