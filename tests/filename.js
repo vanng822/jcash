@@ -4,18 +4,12 @@ var assert = require('assert');
 staticHandler.globalSettings({
 	active : true,
 	inmemory : true,
-	path : {
-		js : __dirname + '/data/jss',
-		css : __dirname + '/data/css'
-	},
-	location : {
-		css : '/styles',
-		js : '/javascript'
-	},
-	maxAge : {
-		css : 3600,
-		js : 3600
-	}
+	pathJs : __dirname + '/data/js',
+	pathCss : __dirname + '/data/css',
+	locationCss : '/styles',
+	locationJs : '/javascript',
+	maxAgeCss : 3600,
+	maxAgeJs : 3600
 });
 
 var cssManager = staticHandler.getCssManager();
