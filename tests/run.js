@@ -100,5 +100,5 @@ function test() {
 };
 
 
-console.log('waiting for md5 calculation ...');
+console.log('waiting for md5 calculation for md5 test ...');
 test();

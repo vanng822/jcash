@@ -76,7 +76,7 @@ function test() {
 		return;
 	}
 	
-	console.log('Start running the md5 tests ...');
+	console.log('Start running the basurl tests ...');
 	assert.equal(jsManager.getUrls('3rthwrapper')[0],'/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js');
 	assert.equal(jsManager.getUrls('jhistory')[0],'/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js');
 	assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="http://igeonotejs.com/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js" type="text/javascript"></script>');
@@ -100,9 +100,9 @@ function test() {
 	assert.deepEqual(cssManager.getContent('/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css'),['/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css','body{width:100%}','7b15f87241fa98c82689ac21b216b9b7']);
 	assert.deepEqual(cssManager.getContent('/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css'),['/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css','','d41d8cd98f00b204e9800998ecf8427e']);
 	
-	console.log('md5 tests done!');
+	console.log('baseurl tests done!');
 };
 
 
-console.log('waiting for md5 calculation ...');
+console.log('waiting for md5 calculation for baseurl test ...');
 test();
