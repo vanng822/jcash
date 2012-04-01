@@ -28,7 +28,7 @@ var config = {
 	css : {
 		files : {
 			'simple' : ['simple.css'],
-			'mobile' : ['simple.css']
+			'mobile' : ['mobile.css']
 		},
 		urls : {
 
@@ -68,12 +68,11 @@ jsManager.preRenderAll();
 
 function test() {
 	if (!jsManager.isDone() || !cssManager.isDone()) {
-		console.log('waiting for md5 calculation ...');
-		setTimeout(test,10);
+		process.nextTick(test);
 		return;
 	}
 	
-	console.log('Start running the tests ...');
+	console.log('Start running the md5 tests ...');
 	assert.equal(jsManager.getUrls('3rthwrapper')[0],'/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js');
 	assert.equal(jsManager.getUrls('jhistory')[0],'/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js');
 	assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js" type="text/javascript"></script>');
@@ -86,18 +85,20 @@ function test() {
 	assert.deepEqual(jsManager.getLocationMap(), []);
 	
 	assert.equal(cssManager.getUrls('simple')[0],'/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css');
-	assert.equal(cssManager.getUrls('mobile')[0],'/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css');
+	assert.equal(cssManager.getUrls('mobile')[0],'/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css');
 	assert.equal(cssManager.renderTags('simple'), '<link href="/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css" rel="stylesheet" />');
-	assert.equal(cssManager.renderTags('mobile'), '<link href="/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css" rel="stylesheet" />');
+	assert.equal(cssManager.renderTags('mobile'), '<link href="/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css" rel="stylesheet" />');
 	
 	assert.deepEqual(cssManager.getLocationMap('/city/map'), ['simple']);
 	assert.deepEqual(cssManager.getLocationMap(), ['simple']);
 	
 	assert.equal(cssManager.hasContent('/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css'), true);
 	assert.deepEqual(cssManager.getContent('/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css'),['/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css','body{width:100%}','7b15f87241fa98c82689ac21b216b9b7']);
+	assert.deepEqual(cssManager.getContent('/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css'),['/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css','','d41d8cd98f00b204e9800998ecf8427e']);
 	
-	console.log('DONE!');
+	console.log('md5 tests done!');
 };
 
 
+console.log('waiting for md5 calculation ...');
 test();

@@ -1,6 +1,9 @@
 NODE = node
 
+TEST_FILES=$(shell find tests/*.js)
+
+
 test:
-	@$(NODE) tests/run.js
+	 $(foreach F, ${TEST_FILES},$(NODE) $(F);)
 
 .PHONY: test
