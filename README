@@ -2,8 +2,8 @@ GOAL
 This project is mostly for adapting solutions out there for my personal use.
 
 WHAT'S NEXT
--Support baseurl for static baseurl
 -Test if dest exist and writeable
+-Replace underscore.extend
 -Comments/docs in the code
 
 
