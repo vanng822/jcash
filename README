@@ -82,7 +82,7 @@ jsManager.parseConfig(staticConfig.js);
 cssManager.parseConfig(staticConfig.css);
 
 /* for serving the contents */
-staticHandler.boostrap(app);
+staticHandler.bootstrap(app);
 
 /* generate the cache */
 jsManager.preRenderAll();
