@@ -45,7 +45,6 @@ function test() {
 			return true;
 		}
 	});
-	
 
 	assert.throws(function() {
 		imageManager.addCache({
@@ -69,7 +68,7 @@ function test() {
 			return true;
 		}
 	});
-	
+
 	assert.throws(function() {
 		imageManager.addCacheBatch([{
 			original : '/img2/testing4.gif',
@@ -108,6 +107,17 @@ function test() {
 	assert.equal(imageManager.getUrl('/img2/testing3.gif'), '/img/dist2/395c0d77abb4d15f7a505c32d3fd40b3.gif');
 	assert.equal(imageManager.renderTag('/img2/testing2.gif'), '<img src="/img/dist2/395c0d77abb4d15f7a505c32d3fd40b2.gif" />');
 	assert.equal(imageManager.renderTag('/img2/testing3.gif'), '<img src="/img/dist2/395c0d77abb4d15f7a505c32d3fd40b3.gif" width="10" height="10" />');
+
+	assert.equal(imageManager.renderTag('/img2/testing3.gif', {
+		"class" : "img",
+		"alt" : "testing 3",
+		"title" : "testing 3"
+	}), '<img src="/img/dist2/395c0d77abb4d15f7a505c32d3fd40b3.gif" width="10" height="10" class="img" alt="testing 3" title="testing 3" />');
+
+	assert.equal(imageManager.renderTag('/img2/testing3.gif', {
+		"alt" : '3"TV',
+		"title" : '"testing 3"'
+	}), '<img src="/img/dist2/395c0d77abb4d15f7a505c32d3fd40b3.gif" width="10" height="10" alt="3&quot;TV" title="&quot;testing 3&quot;" />');
 
 	var fetchCounter = 0;
 	imageManager.fetchFiles(function(err, info) {
