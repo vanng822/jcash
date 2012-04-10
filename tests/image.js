@@ -115,9 +115,9 @@ function test() {
 	}), '<img src="/img/dist2/395c0d77abb4d15f7a505c32d3fd40b3.gif" width="10" height="10" class="img" alt="testing 3" title="testing 3" />');
 
 	assert.equal(imageManager.renderTag('/img2/testing3.gif', {
-		"alt" : '3"TV',
-		"title" : '"testing 3"'
-	}), '<img src="/img/dist2/395c0d77abb4d15f7a505c32d3fd40b3.gif" width="10" height="10" alt="3&quot;TV" title="&quot;testing 3&quot;" />');
+		"alt" : '3"TV>2',
+		"title" : '"testing 3"<4'
+	}), '<img src="/img/dist2/395c0d77abb4d15f7a505c32d3fd40b3.gif" width="10" height="10" alt="3&quot;TV&gt;2" title="&quot;testing 3&quot;&lt;4" />');
 
 	var fetchCounter = 0;
 	imageManager.fetchFiles(function(err, info) {
