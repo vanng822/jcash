@@ -95,7 +95,7 @@ function test() {
 		minifiedContent : '',
 		md5OfContent : 'd41d8cd98f00b204e9800998ecf8427e'
 	});
-	
+
 	/* default keys */
 	var testDumpCssDefault = '';
 	testDumpCssDefault += 'static.css.simple.location = /styles/dist/7b15f87241fa98c82689ac21b216b9b7.css' + "\n";
@@ -105,7 +105,26 @@ function test() {
 	testDumpCssDefault += 'static.css.mobile.minifiedContent = ' + "\n";
 	testDumpCssDefault += 'static.css.mobile.md5OfContent = d41d8cd98f00b204e9800998ecf8427e' + "\n";
 
-	assert.equal(cssManager.dump("", "static.css", {}, true), testDumpCssDefault);
+	assert.equal(cssManager.dump("", {
+		prekey : "static.css",
+		returnValue : true
+	}), testDumpCssDefault);
+	
+	var testDumpCssEscape = ''
+	testDumpCssEscape += 'static.css.simple.location = /styles/dist/7b15f87241fa98c82689ac21b216b9b7.css' + "\n";
+	testDumpCssEscape += "static.css.simple.minifiedContent = body\\{width:100\\%\\}" + "\n";
+	testDumpCssEscape += 'static.css.simple.md5OfContent = 7b15f87241fa98c82689ac21b216b9b7' + "\n";
+	testDumpCssEscape += 'static.css.mobile.location = /styles/dist/d41d8cd98f00b204e9800998ecf8427e.css' + "\n";
+	testDumpCssEscape += 'static.css.mobile.minifiedContent = ' + "\n";
+	testDumpCssEscape += 'static.css.mobile.md5OfContent = d41d8cd98f00b204e9800998ecf8427e' + "\n";
+	
+	assert.equal(cssManager.dump("", {
+		prekey : "static.css",
+		returnValue : true,
+		escape : function(c) {
+			return String(c).replace(/{/g,'\\{').replace(/}/g,'\\}').replace(/%/g,'\\%');
+		}
+	}), testDumpCssEscape);
 	
 	var testDumpCss = ''
 	testDumpCss += 'static.css.simple.location = /styles/dist/7b15f87241fa98c82689ac21b216b9b7.css' + "\n";
@@ -115,10 +134,18 @@ function test() {
 	testDumpCss += 'static.css.mobile.content = ' + "\n";
 	testDumpCss += 'static.css.mobile.md5OfContent = d41d8cd98f00b204e9800998ecf8427e' + "\n";
 
-	assert.equal(cssManager.dump(__dirname + '/data/js/dist/dump.conf', "static.css", {minifiedContent: 'content'}, true), testDumpCss);
-	
+	assert.equal(cssManager.dump(__dirname + '/data/js/dist/dump.conf', {
+		prekey : "static.css",
+		minifiedContent : 'content',
+		returnValue : true
+	}), testDumpCss);
+
 	fs.readFile(__dirname + '/data/js/dump.conf', function(err, data) {
-		assert.equal(jsManager.dump("", "static.css", {minifiedContent: 'content'}, true), data);
+		assert.equal(jsManager.dump("", {
+			prekey : "static.css",
+			minifiedContent : 'content',
+			returnValue : true
+		}), data);
 	});
 	console.log('md5 tests done!');
 };
