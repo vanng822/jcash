@@ -1,6 +1,6 @@
 var staticHandler = require('../index.js');
 var assert = require('assert');
-
+var fs = require('fs');
 var config = {
 	js : {
 		files : {
@@ -95,7 +95,31 @@ function test() {
 		minifiedContent : '',
 		md5OfContent : 'd41d8cd98f00b204e9800998ecf8427e'
 	});
+	
+	/* default keys */
+	var testDumpCssDefault = '';
+	testDumpCssDefault += 'static.css.simple.location = /styles/dist/7b15f87241fa98c82689ac21b216b9b7.css' + "\n";
+	testDumpCssDefault += 'static.css.simple.minifiedContent = body{width:100%}' + "\n";
+	testDumpCssDefault += 'static.css.simple.md5OfContent = 7b15f87241fa98c82689ac21b216b9b7' + "\n";
+	testDumpCssDefault += 'static.css.mobile.location = /styles/dist/d41d8cd98f00b204e9800998ecf8427e.css' + "\n";
+	testDumpCssDefault += 'static.css.mobile.minifiedContent = ' + "\n";
+	testDumpCssDefault += 'static.css.mobile.md5OfContent = d41d8cd98f00b204e9800998ecf8427e' + "\n";
 
+	assert.equal(cssManager.dump("", "static.css", {}, true), testDumpCssDefault);
+	
+	var testDumpCss = ''
+	testDumpCss += 'static.css.simple.location = /styles/dist/7b15f87241fa98c82689ac21b216b9b7.css' + "\n";
+	testDumpCss += 'static.css.simple.content = body{width:100%}' + "\n";
+	testDumpCss += 'static.css.simple.md5OfContent = 7b15f87241fa98c82689ac21b216b9b7' + "\n";
+	testDumpCss += 'static.css.mobile.location = /styles/dist/d41d8cd98f00b204e9800998ecf8427e.css' + "\n";
+	testDumpCss += 'static.css.mobile.content = ' + "\n";
+	testDumpCss += 'static.css.mobile.md5OfContent = d41d8cd98f00b204e9800998ecf8427e' + "\n";
+
+	assert.equal(cssManager.dump(__dirname + '/data/js/dist/dump.conf', "static.css", {minifiedContent: 'content'}, true), testDumpCss);
+	
+	fs.readFile(__dirname + '/data/js/dump.conf', function(err, data) {
+		assert.equal(jsManager.dump("", "static.css", {minifiedContent: 'content'}, true), data);
+	});
 	console.log('md5 tests done!');
 };
 
