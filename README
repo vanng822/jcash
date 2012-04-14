@@ -76,10 +76,12 @@ var config = {
 var app = express.createServer();
 var jsManager = staticHandler.getJsManager();
 var cssManager = staticHandler.getCssManager();
-
+var imageManager = staticHandler.getImageManager({path : __dirname + '/public/img', hasGm : true});
+	
 /* parsing the configuration */
 jsManager.parseConfig(staticConfig.js);
 cssManager.parseConfig(staticConfig.css);
+
 
 /* for serving the contents */
 staticHandler.bootstrap(app);
@@ -87,11 +89,13 @@ staticHandler.bootstrap(app);
 /* generate the cache */
 jsManager.preRenderAll();
 cssManager.preRenderAll();
-
+imageManager.fetchFiles();
+	
 --------------------------
 
 /* ejs templates; content template */
 <% addBottomScript('some javascript including script-tag here') %>
+<%- renderImageTag('/img/icons/loading.gif') %>
 
 /* layout template with automatic location mapping */
 <html>
@@ -102,6 +106,11 @@ cssManager.preRenderAll();
 	<%- body %>
 	<%- renderScriptTags() %>
 	<%- renderBottomScripts() %>
+	<script type="text/javascript">
+	$(function(){
+		VNF.util.Loading.loadingImage = "<%- getImageUrl('/img/icons/loading.gif') %>";
+	});
+</script>
 	</body>
 </html>
 
