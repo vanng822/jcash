@@ -62,11 +62,6 @@ jsManager.parseConfig(config.js);
 cssManager.parseConfig(config.css);
 
 function test() {
-	if (!jsManager.isDone() || !cssManager.isDone()) {
-		process.nextTick(test);
-		return;
-	}
-	
 	console.log('Start running the write error test ...');
 	cssManager.renderTags('simple', function(err) {/*TODO: better way to assert */
 		assert.ok(err instanceof Error && /no such file or directory/.test(err));
