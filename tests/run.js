@@ -57,17 +57,16 @@ function test() {
 		process.nextTick(test);
 		return;
 	}
-
 	console.log('Start running the md5 tests ...');
-	assert.equal(jsManager.getUrls('3rthwrapper')[0], '/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js');
-	assert.equal(jsManager.getUrls('jhistory')[0], '/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js');
-	assert.deepEqual(jsManager.getUrls('jQuery'), ['http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', '/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js']);
+	assert.equal(jsManager.getUrls('3rthwrapper')[0], '/javascript/dist/359d39bfca5ea031eca0d55ba732d434.js');
+	assert.equal(jsManager.getUrls('jhistory')[0], '/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js');
+	assert.deepEqual(jsManager.getUrls('jQuery'), ['http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', '/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js']);
 	assert.deepEqual(jsManager.getUrls('googleMap'), ['http://maps.google.com/maps/api/js?sensor=false']);
 
-	assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js" type="text/javascript"></script>');
-	assert.equal(jsManager.renderTags('jhistory'), '<script src="/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js" type="text/javascript"></script>');
+	assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="/javascript/dist/359d39bfca5ea031eca0d55ba732d434.js" type="text/javascript"></script>');
+	assert.equal(jsManager.renderTags('jhistory'), '<script src="/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js" type="text/javascript"></script>');
 
-	assert.equal(jsManager.renderTags('jQuery'), '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script><script src="/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js" type="text/javascript"></script>');
+	assert.equal(jsManager.renderTags('jQuery'), '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script><script src="/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js" type="text/javascript"></script>');
 	assert.equal(jsManager.renderTags('googleMap'), '<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>');
 
 	assert.deepEqual(jsManager.getLocationMap('/'), ['jQuery', 'jshistory', '3rthwrapper', 'googleMap']);
@@ -142,7 +141,7 @@ function test() {
 
 	fs.readFile(__dirname + '/data/js/dump.conf', function(err, data) {
 		assert.equal(jsManager.dump("", {
-			prekey : "static.css",
+			prekey : "static.js",
 			minifiedContent : 'content',
 			returnValue : true
 		}), data);

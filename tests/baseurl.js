@@ -60,10 +60,10 @@ function test() {
 	}
 
 	console.log('Start running the basurl tests ...');
-	assert.equal(jsManager.getUrls('3rthwrapper')[0], 'http://igeonotejs.com/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js');
-	assert.equal(jsManager.getUrls('jhistory')[0], 'http://igeonotejs.com/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js');
-	assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="http://igeonotejs.com/javascript/dist/8b95b0b9a0af37bd36041e0d0d58ddbe.js" type="text/javascript"></script>');
-	assert.equal(jsManager.renderTags('jhistory'), '<script src="http://igeonotejs.com/javascript/dist/6a744912514b63ade76d53e5db15a9ce.js" type="text/javascript"></script>');
+	assert.equal(jsManager.getUrls('3rthwrapper')[0], 'http://igeonotejs.com/javascript/dist/359d39bfca5ea031eca0d55ba732d434.js');
+	assert.equal(jsManager.getUrls('jhistory')[0], 'http://igeonotejs.com/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js');
+	assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="http://igeonotejs.com/javascript/dist/359d39bfca5ea031eca0d55ba732d434.js" type="text/javascript"></script>');
+	assert.equal(jsManager.renderTags('jhistory'), '<script src="http://igeonotejs.com/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js" type="text/javascript"></script>');
 
 	assert.deepEqual(jsManager.getLocationMap('/'), ['jQuery', 'jshistory', '3rthwrapper', 'googleMap']);
 	assert.deepEqual(jsManager.getLocationMap('/note'), ['jQuery', 'jhistory']);

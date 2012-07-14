@@ -40,11 +40,10 @@ function test() {
 
 			assert.equal(imageManager.getUrl('/img/icons/favicon.png'), '/img/dist/3dbf67627cd67f2878fe0d23442efffc.png');
 			assert.equal(imageManager.renderTag('/img/icons/favicon.png'), '<img src="/img/dist/3dbf67627cd67f2878fe0d23442efffc.png" />');
-
+			console.log('filename test done!');
 		}
 	});
-
-	console.log('filename test done!');
 };
+
 
 test();

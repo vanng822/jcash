@@ -43,11 +43,10 @@ function test() {
 
 			assert.equal(imageManager.getUrl('/img/icons/favicon.png'), 'http://igeonote.com/img/dist/3dbf67627cd67f2878fe0d23442efffc.png');
 			assert.equal(imageManager.renderTag('/img/icons/favicon.png'), '<img src="http://igeonote.com/img/dist/3dbf67627cd67f2878fe0d23442efffc.png" width="16" height="16" />');
-
+			console.log('filename test done!');
 		}
 	});
-
-	console.log('filename test done!');
 };
 
 test();
+
