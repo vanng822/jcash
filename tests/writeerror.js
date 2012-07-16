@@ -65,8 +65,8 @@ function test() {
 	console.log('Start running the write error test ...');
 	cssManager.renderTags('simple', function(err) {/*TODO: better way to assert */
 		assert.ok(err instanceof Error && /ENOENT/.test(err));
+		console.log('write error test done!');
 	});
-	console.log('write error test done!');
 };
 
 test();

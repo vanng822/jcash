@@ -23,9 +23,8 @@ function test() {
 	
 	cssManager.renderTags('simple', function(err) {
 		assert.ok(err instanceof Error && /Could not read data for file/.test(err));
+		console.log('filename test done!');
 	});
-	
-	console.log('filename test done!');
 };
 
 test();
