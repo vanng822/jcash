@@ -1,11 +1,18 @@
 {
-  "name"          : "jcash",
-  "description"   : "Javascript and css hashing for node.js",
-  "keywords"      : ["Hashing", "javascript", "css"],
-  "author"        : "Nguyen Van Nhu",
-  "dependencies"  : {"underscore": "1.3.1", "funk": "1.5.0", "uglify-js" : "1.2.6",  "sqwish": "0.2.0", "gm": "1.2.0"},
-  "version"       : "0.1.0",
-  "engines": {
-    "node": ">= 0.8.0"
-  }
+	"name": "jcash",
+	"description": "Javascript and css hashing for node.js",
+	"keywords": ["Hashing", "javascript", "css"],
+	"author": "Nguyen Van Nhu",
+	"homepage": "https://github.com/vanng822/jcash",
+	"dependencies": {
+		"underscore": "1.3.1",
+		"funk": "1.5.0",
+		"uglify-js": "1.2.6",
+		"sqwish": "0.2.0",
+		"gm": "1.2.0"
+	},
+	"version": "0.1.0",
+	"engines": {
+		"node": ">= 0.8.0"
+	}
 }
