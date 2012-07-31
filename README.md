@@ -27,7 +27,9 @@ This project is mostly for adapting solutions out there for my personal use.
 	
 
 ### Real example
-	/* real configuration at http://igeonote.com */
+
+Real configuration at http://igeonote.com
+
 	var config = {
 		js : {
 			files : {
@@ -66,7 +68,8 @@ This project is mostly for adapting solutions out there for my personal use.
 		}
 	};
 	
-	
+Basic server setup
+
 	var app = express.createServer();
 	var jsManager = staticHandler.getJsManager();
 	var cssManager = staticHandler.getCssManager();
@@ -87,11 +90,13 @@ This project is mostly for adapting solutions out there for my personal use.
 	imageManager.fetchFiles();
 	
 	
-	/* ejs templates; content template */
+Content template (ejs templates)
+
 	<% addBottomScript('some javascript including script-tag here') %>
 	<%- renderImageTag('/img/icons/loading.gif') %>
 	
-	/* layout template with automatic location mapping */
+layout template with automatic location mapping
+
 	<html>
 		<head>
 		<%- renderStyleTags() %>
