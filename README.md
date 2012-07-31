@@ -70,6 +70,8 @@ Real configuration at http://igeonote.com
 	
 Basic server setup
 
+	var express = require('express');
+	var staticHandler = require('jcash');
 	var app = express.createServer();
 	var jsManager = staticHandler.getJsManager();
 	var cssManager = staticHandler.getCssManager();
@@ -82,6 +84,8 @@ Basic server setup
 	
 	/* for serving the contents */
 	staticHandler.bootstrap(app);
+	
+	/* Adding template functions */
 	app.dynamicHelpers(staticHandler.dynamicHelpers);
 	
 	/* generate the cache */
@@ -109,7 +113,7 @@ layout template with automatic location mapping
 		$(function(){
 			VNF.util.Loading.loadingImage = "<%- getImageUrl('/img/icons/loading.gif') %>";
 		});
-	</script>
+		</script>
 		</body>
 	</html>
 
