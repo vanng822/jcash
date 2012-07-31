@@ -82,6 +82,7 @@ This project is mostly for adapting solutions out there for my personal use.
 	
 	/* for serving the contents */
 	staticHandler.bootstrap(app);
+	app.dynamicHelpers(staticHandler.dynamicHelpers);
 	
 	/* generate the cache */
 	jsManager.preRenderAll();
