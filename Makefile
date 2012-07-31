@@ -1,10 +1,11 @@
 NODE=node
 
-TEST_FILES=baseurl.js filename.js path.js run.js writeerror.js image.js
+#TEST_FILES=baseurl.js filename.js path.js run.js writeerror.js image.js imagebaseurl.js
 
+TEST_FILES=$(shell find tests/*.js)
 
 test:
-	 $(foreach F, ${TEST_FILES},$(NODE) tests/$(F);)
+	 $(foreach F, ${TEST_FILES},$(NODE) $(F);)
 
 
 clean cleandir:
