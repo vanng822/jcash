@@ -2,10 +2,7 @@
 This project is mostly for adapting solutions out there for my personal use.
 
 ## Usage
-	/* require necessary */
-	var express = require('express');
-	var staticHandler = require('jcash');
-	
+### Howto configure	
 	/**
 	 * 
 	 * configuration rules
@@ -29,7 +26,7 @@ This project is mostly for adapting solutions out there for my personal use.
 	 */
 	
 
-## Real example
+### Real example
 	/* real configuration at http://igeonote.com */
 	var config = {
 		js : {
