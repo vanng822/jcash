@@ -60,7 +60,7 @@ function test() {
 test();
 
 /**
- * v0.2.3
+ * v0.2.4
  * run js.renderTags 1000000
  * took: 791 ms
  * run css.renderTags 1000000
