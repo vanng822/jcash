@@ -1,5 +1,6 @@
 ## jcash
 This project is mostly for adapting solutions out there for my personal use.
+For the size of the image you have to install GraphicsMagick (http://www.graphicsmagick.org/)
 
 ## Usage
 ### Howto configure	
