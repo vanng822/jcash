@@ -9,7 +9,3 @@ Image:
 -Symbolic link (if possible) or Serving image instead "static handler".
  Just map the new url to the file and skip writting to dist.
  This will reduce write operations for faster startup and don't need to clean up the dist.
-
-Javascript/css:
--Make etag configurable (or maybe remove it). The url should contain this info.
- Getting this info from url should be quick and this will reduce size of request.
