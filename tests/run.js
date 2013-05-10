@@ -54,7 +54,7 @@ jsManager.preRenderAll();
 
 function test() {
 	if(!jsManager.isDone() || !cssManager.isDone()) {
-		process.nextTick(test);
+		setImmediate(test);
 		return;
 	}
 	console.log('Start running the md5 tests ...');
