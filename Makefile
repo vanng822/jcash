@@ -9,9 +9,9 @@ test:
 	$(foreach F, ${TEST_FILES},$(NODE) $(F);)
 
 build:
-	mkdir tests/data/css/dist
-	mkdir tests/data/img/dist
-	mkdir tests/data/js/dist
+	mkdir -p tests/data/css/dist
+	mkdir -p tests/data/img/dist
+	mkdir -p tests/data/js/dist
 
 clean cleandir:
 	rm tests/data/css/dist/*.*

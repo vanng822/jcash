@@ -1,6 +1,6 @@
 var staticHandler = require('../index.js');
 var assert = require('assert');
-
+var vows = require('vows');
 
 staticHandler.globalSettings({
 	active : true,
@@ -16,27 +16,22 @@ staticHandler.globalSettings({
 var jsManager = staticHandler.getJsManager();
 var cssManager = staticHandler.getCssManager();
 
+vows.describe('Test suite for none-exist path').addBatch({
+	'When provide a none-exist path the manager should throw an error' : function() {
+		assert.throws(function() {
+			jsManager.checkPath();
+		}, function(err) {
+			if(( err instanceof Error) && /Path does not exist/.test(err)) {
+				return true;
+			}
+		}, "Expected an error due to path doesn't exist");
 
-function test() {
-	console.log('Start running the path test ...');
-	
-	assert.throws(function() {
-		jsManager.checkPath();
-	}, function(err) {
-		if(( err instanceof Error) && /Path does not exist/.test(err)) {
-			return true;
-		}
-	}, "Expected an error due to path doesn't exist");
-	
-	assert.throws(function() {
-		cssManager.checkPath();
-	}, function(err) {
-		if(( err instanceof Error) && /Path does not exist/.test(err)) {
-			return true;
-		}
-	}, "Expected an error due to path doesn't exist");
-	
-	console.log('path test done!');
-};
-
-test();
+		assert.throws(function() {
+			cssManager.checkPath();
+		}, function(err) {
+			if(( err instanceof Error) && /Path does not exist/.test(err)) {
+				return true;
+			}
+		}, "Expected an error due to path doesn't exist");
+	}
+}).export(module);
