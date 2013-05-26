@@ -51,24 +51,27 @@ vows.describe('Test suite for md5 calculation of baseurl').addBatch({
 			jsManager.parseConfig(config.js);
 			jsManager.on('done', this.callback);
 			jsManager.preRenderAll();
-			
 		},
-		'we should have a set of md5 for path' : function() {
-				var jsManager = staticHandler.getJsManager();
-				console.log('Start running the basurl tests ...');
-				assert.equal(jsManager.getUrls('3rthwrapper')[0], 'http://igeonotejs.com/javascript/dist/359d39bfca5ea031eca0d55ba732d434.js');
-				assert.equal(jsManager.getUrls('jhistory')[0], 'http://igeonotejs.com/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js');
-				assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="http://igeonotejs.com/javascript/dist/359d39bfca5ea031eca0d55ba732d434.js" type="text/javascript"></script>');
-				assert.equal(jsManager.renderTags('jhistory'), '<script src="http://igeonotejs.com/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js" type="text/javascript"></script>');
-
-				assert.deepEqual(jsManager.getLocationMap('/'), ['jQuery', 'jshistory', '3rthwrapper', 'googleMap']);
-				assert.deepEqual(jsManager.getLocationMap('/note'), ['jQuery', 'jhistory']);
-				assert.deepEqual(jsManager.getLocationMap('/city/map'), ['jQuery', 'jhistory', 'googleMap']);
-				assert.deepEqual(jsManager.getLocationMap('/none'), []);
-				assert.deepEqual(jsManager.getLocationMap(), [])
+		'we should have a set of md5 for path for url' : function() {
+			var jsManager = staticHandler.getJsManager();
+			assert.equal(jsManager.getUrls('3rthwrapper')[0], 'http://igeonotejs.com/javascript/dist/359d39bfca5ea031eca0d55ba732d434.js');
+			assert.equal(jsManager.getUrls('jhistory')[0], 'http://igeonotejs.com/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js');
+		},
+		'we should be able to render script tag with md5 path': function() {
+			var jsManager = staticHandler.getJsManager();
+			assert.equal(jsManager.renderTags('3rthwrapper'), '<script src="http://igeonotejs.com/javascript/dist/359d39bfca5ea031eca0d55ba732d434.js" type="text/javascript"></script>');
+			assert.equal(jsManager.renderTags('jhistory'), '<script src="http://igeonotejs.com/javascript/dist/c45c3983e39ef2d0cea5a01fc657f0b1.js" type="text/javascript"></script>');
+		},
+		'we should be able to mapping location' : function() {
+			var jsManager = staticHandler.getJsManager();
+			assert.deepEqual(jsManager.getLocationMap('/'), ['jQuery', 'jshistory', '3rthwrapper', 'googleMap']);
+			assert.deepEqual(jsManager.getLocationMap('/note'), ['jQuery', 'jhistory']);
+			assert.deepEqual(jsManager.getLocationMap('/city/map'), ['jQuery', 'jhistory', 'googleMap']);
+			assert.deepEqual(jsManager.getLocationMap('/none'), []);
+			assert.deepEqual(jsManager.getLocationMap(), []);
 		}
 	},
-	
+
 }).addBatch({
 	'after loading of css' : {
 		topic : function() {
@@ -91,27 +94,31 @@ vows.describe('Test suite for md5 calculation of baseurl').addBatch({
 			cssManager.preRenderAll();
 		},
 		'we should have a set of md2 for the path' : function() {
-				var cssManager = staticHandler.getCssManager();
-				assert.equal(cssManager.getUrls('simple')[0], 'http://igeonotecss.com/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css');
-				assert.equal(cssManager.getUrls('mobile')[0], 'http://igeonotecss.com/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css');
-				assert.equal(cssManager.renderTags('simple'), '<link href="http://igeonotecss.com/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css" rel="stylesheet" />');
-				assert.equal(cssManager.renderTags('mobile'), '<link href="http://igeonotecss.com/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css" rel="stylesheet" />');
-
-				assert.deepEqual(cssManager.getLocationMap('/city/map'), ['simple']);
-				assert.deepEqual(cssManager.getLocationMap(), ['simple']);
-
-				assert.equal(cssManager.hasContent('/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css'), true);
-				assert.deepEqual(cssManager.getContent('/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css'), {
-					location : '/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css',
-					minifiedContent : 'body{width:100%}',
-					md5OfContent : '7b15f87241fa98c82689ac21b216b9b7'
-				});
-				assert.deepEqual(cssManager.getContent('/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css'), {
-					location : '/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css',
-					minifiedContent : '',
-					md5OfContent : 'd41d8cd98f00b204e9800998ecf8427e'
-				});
+			var cssManager = staticHandler.getCssManager();
+			assert.equal(cssManager.getUrls('simple')[0], 'http://igeonotecss.com/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css');
+			assert.equal(cssManager.getUrls('mobile')[0], 'http://igeonotecss.com/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css');
+			assert.equal(cssManager.renderTags('simple'), '<link href="http://igeonotecss.com/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css" rel="stylesheet" />');
+			assert.equal(cssManager.renderTags('mobile'), '<link href="http://igeonotecss.com/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css" rel="stylesheet" />');
+		},
+		'we should be able to get content of minified css' : function() {
+			var cssManager = staticHandler.getCssManager();
+			assert.equal(cssManager.hasContent('/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css'), true);
+			assert.deepEqual(cssManager.getContent('/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css'), {
+				location : '/styles/dist/7b15f87241fa98c82689ac21b216b9b7.css',
+				minifiedContent : 'body{width:100%}',
+				md5OfContent : '7b15f87241fa98c82689ac21b216b9b7'
+			});
+			assert.deepEqual(cssManager.getContent('/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css'), {
+				location : '/styles/dist/d41d8cd98f00b204e9800998ecf8427e.css',
+				minifiedContent : '',
+				md5OfContent : 'd41d8cd98f00b204e9800998ecf8427e'
+			});
+		},
+		'we should be able to map location for a set of css' : function() {
+			var cssManager = staticHandler.getCssManager();
+			assert.deepEqual(cssManager.getLocationMap('/city/map'), ['simple']);
+			assert.deepEqual(cssManager.getLocationMap(), ['simple']);
 		}
 	},
-	
+
 }).export(module);
