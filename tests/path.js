@@ -17,7 +17,7 @@ var jsManager = staticHandler.getJsManager();
 var cssManager = staticHandler.getCssManager();
 
 vows.describe('Test suite for none-exist path').addBatch({
-	'When provide a none-exist path the manager should throw an error' : function() {
+	'When provide a none-exist path the js manager should throw an error' : function() {
 		assert.throws(function() {
 			jsManager.checkPath();
 		}, function(err) {
@@ -25,7 +25,8 @@ vows.describe('Test suite for none-exist path').addBatch({
 				return true;
 			}
 		}, "Expected an error due to path doesn't exist");
-
+	},
+	'When provide a none-exist path the css manager should throw an error' : function() {
 		assert.throws(function() {
 			cssManager.checkPath();
 		}, function(err) {
