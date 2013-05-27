@@ -1,22 +1,13 @@
 var staticHandler = require('../index.js');
 var assert = require('assert');
+var vows = require('vows');
 
 var config = {
 	js : {
 		files : {
-			'3rthwrapper' : [
-				'gplusone.js',
-				'fbshare.js', 
-				'geolocation.js',
-				'loading.js', 
-				'gatracking.js'
-				],
-			'jhistory' : [
-				'jhistory.js'
-			],
-			'jQuery' : [
-				'jhistory.js'
-			]
+			'3rthwrapper' : ['gplusone.js', 'fbshare.js', 'geolocation.js', 'loading.js', 'gatracking.js'],
+			'jhistory' : ['jhistory.js'],
+			'jQuery' : ['jhistory.js']
 		},
 		urls : {
 			'jQuery' : ['http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'],
@@ -55,18 +46,19 @@ staticHandler.globalSettings({
 	maxAgeJs : 3600
 });
 
-var jsManager = staticHandler.getJsManager();
 var cssManager = staticHandler.getCssManager();
-
-jsManager.parseConfig(config.js);
 cssManager.parseConfig(config.css);
 
-function test() {
-	console.log('Start running the write error test ...');
-	cssManager.renderTags('simple', function(err) {/*TODO: better way to assert */
-		assert.ok(err instanceof Error && /ENOENT/.test(err));
-		console.log('write error test done!');
-	});
-};
-
-test();
+vows.describe('Test suite for none-exist dist path').addBatch({
+	'when render css with none-exist dist path' : {
+		topic : function() {
+			var self = this;
+			cssManager.renderTags('simple', function(err) {
+				self.callback(err instanceof Error && /ENOENT/.test(err));
+			});
+		},
+		'it should callback with an error ENOENT' : function(is_err) {
+			assert.ok(is_err);
+		}
+	}
+}).export(module);
