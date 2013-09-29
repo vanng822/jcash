@@ -18,5 +18,11 @@
 	},
 	"scripts": {
 		"test": "make"
-	}
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/vanng822/jcash/blob/master/LICENSE"
+		}
+	]
 }
