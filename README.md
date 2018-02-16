@@ -1,11 +1,18 @@
+## [DEPRECATED]
+Please I have no longer time for maintaining this package.
+Previous version depended on old version of uglify-js which had security issues
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8857
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8858
+PLEASE DO NOT USE THIS PACKAGE
+
 ## jcash
 This project is mostly for adapting solutions out there for my personal use.
 For the size of the image you have to install GraphicsMagick (http://www.graphicsmagick.org/)
 
 ## Usage
-### Howto configure	
+### Howto configure
 	/**
-	 * 
+	 *
 	 * configuration rules
 	 * location referred to the path in the url
 	 *
@@ -25,7 +32,7 @@ For the size of the image you have to install GraphicsMagick (http://www.graphic
 	 		}
 	  }
 	 */
-	
+
 
 ### Real example
 
@@ -38,9 +45,9 @@ Real configuration at http://igeonote.com
 					'vnf/namespace.js',
 					'vnf/language.js',
 					'vnf/util/gplusone.js',
-					'vnf/util/fbshare.js', 
+					'vnf/util/fbshare.js',
 					'vnf/util/geolocation.js',
-					'vnf/util/loading.js', 
+					'vnf/util/loading.js',
 					'vnf/util/gatracking.js',
 					'jquery/jhistory.js',
 					'igeonote.js']
@@ -61,14 +68,14 @@ Real configuration at http://igeonote.com
 				'mobile' : ['igeonote-phone.css']
 			},
 			urls : {
-				
+
 			},
 			locationMap : {
 				'*' : ['igeonote']
 			}
 		}
 	};
-	
+
 Basic server setup
 
 	var express = require('express');
@@ -77,29 +84,29 @@ Basic server setup
 	var jsManager = staticHandler.getJsManager();
 	var cssManager = staticHandler.getCssManager();
 	var imageManager = staticHandler.getImageManager({path : __dirname + '/public/img', hasGm : true});
-		
+
 	/* parsing the configuration */
 	jsManager.parseConfig(staticConfig.js);
 	cssManager.parseConfig(staticConfig.css);
-	
-	
+
+
 	/* for serving the contents */
 	staticHandler.bootstrap(app);
-	
+
 	/* Adding template functions */
 	app.dynamicHelpers(staticHandler.dynamicHelpers);
-	
+
 	/* generate the cache */
 	jsManager.preRenderAll();
 	cssManager.preRenderAll();
 	imageManager.fetchFiles();
-	
-	
+
+
 Content template (ejs templates)
 
 	<% addBottomScript('some javascript including script-tag here') %>
 	<%- renderImageTag('/img/icons/loading.gif') %>
-	
+
 layout template with automatic location mapping
 
 	<html>
@@ -117,5 +124,3 @@ layout template with automatic location mapping
 		</script>
 		</body>
 	</html>
-
-	
